@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Easy Robotics with ROS</title>
     <link rel="stylesheet" href="styles.css">
-    <script src="script.js" defer></script>
 </head>
 <body>
     <header>
@@ -16,6 +15,7 @@
                 <li><a href="#ros-versions">ROS Versions</a></li>
                 <li><a href="#setup">Setup Guide</a></li>
                 <li><a href="#tools">Best Tools</a></li>
+                <li><a href="#docker">ROS with Docker</a></li>
             </ul>
         </nav>
     </header>
@@ -51,6 +51,83 @@
             <li><strong>Gazebo</strong> - High-fidelity simulation</li>
             <li><strong>Docker</strong> - Run ROS without installation hassles</li>
             <li><strong>VS Code</strong> - Great for ROS development</li>
+        </ul>
+    </section>
+    
+    <section id="docker">
+        <h2>ROS with Docker - The Easy Way 🚀</h2>
+        <p>Welcome to the easiest way to run ROS! No more installation nightmares—just use <strong>Docker</strong> and get started with ROS right away. This guide will help you set up <strong>ROS Noetic</strong> (for ROS1) and <strong>ROS2 Humble</strong> in Docker and provide tutorials on <strong>Turtlesim</strong> and <strong>TurtleBot3</strong> simulation.</p>
+        
+        <h3>🚀 Quick Start</h3>
+        <h4>Prerequisites</h4>
+        <ul>
+            <li>Install <strong>Docker</strong> (<a href="https://docs.docker.com/get-docker/">Docker Installation</a>)</li>
+            <li>Install <strong>Docker Compose</strong> (<a href="https://docs.docker.com/compose/install/">Docker Compose Installation</a>)</li>
+        </ul>
+
+        <h4>Clone this Repository</h4>
+        <pre>
+git clone https://github.com/your-username/ros-docker-tutorial.git
+cd ros-docker-tutorial
+        </pre>
+        
+        <h4>Build and Run ROS1 Docker</h4>
+        <pre>
+docker-compose up -d ros1
+        </pre>
+        
+        <h4>Build and Run ROS2 Docker</h4>
+        <pre>
+docker-compose up -d ros2
+        </pre>
+        
+        <h4>Enter the container</h4>
+        <pre>
+docker exec -it ros-container-name bash
+        </pre>
+
+        <h3>📌 ROS1: Turtlesim Tutorial 🐢</h3>
+        <pre>
+roscore &
+rosrun turtlesim turtlesim_node
+rosrun turtlesim turtle_teleop_key
+        </pre>
+        <p>More details: <a href="http://wiki.ros.org/turtlesim">ROS1 Turtlesim Documentation</a></p>
+
+        <h3>🤖 ROS2: TurtleBot3 Simulation 🏎️</h3>
+        <pre>
+export TURTLEBOT3_MODEL=burger
+source /opt/ros/humble/setup.bash
+ros2 launch turtlebot3_gazebo turtlebot3_world.launch.py
+ros2 run turtlebot3_teleop teleop_keyboard
+        </pre>
+        <p>More details: <a href="https://emanual.robotis.com/docs/en/platform/turtlebot3/overview/">TurtleBot3 Documentation</a></p>
+    
+        <h3>🏞️ Best Visualization & Simulation Tools for ROS</h3>
+        <h4>Using RViz</h4>
+        <pre>
+rosrun rviz rviz
+ros2 run rviz2 rviz2
+        </pre>
+        <h4>Using Gazebo</h4>
+        <pre>
+roslaunch gazebo_ros empty_world.launch
+ros2 launch gazebo_ros gazebo.launch.py
+        </pre>
+        
+        <h3>🔄 Switching Between OpenCV Versions</h3>
+        <pre>
+python3 -c "import cv2; print(cv2.__version__)"
+pip install --upgrade opencv-python==4.5.5.62
+python3 -c "import cv2; print(cv2.__version__)"
+        </pre>
+        
+        <h3>🛠️ Troubleshooting</h3>
+        <ul>
+            <li><strong>Cannot run GUI apps?</strong> Use <code>xhost +local:docker</code> and add <code>-e DISPLAY=$DISPLAY</code> to the Docker run command.</li>
+            <li><strong>Container not found?</strong> Check running containers with <code>docker ps -a</code>.</li>
+            <li><strong>ROS2 command not found?</strong> Ensure you sourced the workspace.</li>
+            <li><strong>OpenCV version mismatch?</strong> Use <code>pip uninstall opencv-python</code> before installing a new version.</li>
         </ul>
     </section>
     
