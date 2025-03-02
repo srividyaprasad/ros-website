@@ -16,6 +16,13 @@
                 <li><a href="#setup">Setup Guide</a></li>
                 <li><a href="#tools">Best Tools</a></li>
                 <li><a href="#docker">ROS with Docker</a></li>
+                <li><a href="#basic-concepts">Basic ROS Concepts</a></li>
+                <li><a href="#workspaces">ROS Workspaces</a></li>
+                <li><a href="#urdf">URDF & Robot Modeling</a></li>
+                <li><a href="#tf">TF & Transformations</a></li>
+                <li><a href="#navigation">ROS Navigation Basics</a></li>
+                <li><a href="#hardware">ROS Hardware Integration</a></li>
+                <li><a href="#custom-messages">Custom ROS Messages & Services</a></li>
             </ul>
         </nav>
     </header>
@@ -129,6 +136,67 @@ python3 -c "import cv2; print(cv2.__version__)"
             <li><strong>ROS2 command not found?</strong> Ensure you sourced the workspace.</li>
             <li><strong>OpenCV version mismatch?</strong> Use <code>pip uninstall opencv-python</code> before installing a new version.</li>
         </ul>
+    </section>
+    
+    <section id="basic-concepts">
+        <h2>Basic ROS Concepts</h2>
+        <p>Understanding ROS nodes, topics, services, and actions is essential. Here’s a basic example of a ROS publisher and subscriber:</p>
+        <pre>
+        rostopic pub /chatter std_msgs/String "Hello, ROS!"
+        rostopic echo /chatter
+        </pre>
+    </section>
+    
+    <section id="workspaces">
+        <h2>ROS Workspaces & Catkin/Colcon</h2>
+        <p>ROS uses workspaces to organize projects. Set up a Catkin workspace:</p>
+        <pre>
+        mkdir -p ~/catkin_ws/src
+        cd ~/catkin_ws
+        catkin_make
+        </pre>
+    </section>
+    
+    <section id="urdf">
+        <h2>URDF & Robot Modeling</h2>
+        <p>URDF (Unified Robot Description Format) is used to model robots. Example URDF snippet:</p>
+        <pre>
+        <robot name="my_robot">
+            <link name="base_link"/>
+        </robot>
+        </pre>
+    </section>
+    
+    <section id="tf">
+        <h2>TF & Transformations</h2>
+        <p>TF is used to manage coordinate transformations in ROS. A simple broadcaster example:</p>
+        <pre>
+        rosrun tf static_transform_publisher 0 0 0 0 0 0 base_link world 10
+        </pre>
+    </section>
+    
+    <section id="navigation">
+        <h2>ROS Navigation Basics</h2>
+        <p>The navigation stack allows autonomous robot movement. Example launch:</p>
+        <pre>
+        roslaunch turtlebot3_navigation turtlebot3_navigation.launch
+        </pre>
+    </section>
+    
+    <section id="hardware">
+        <h2>ROS Hardware Integration</h2>
+        <p>Integrate ROS with hardware like Arduino. Example setup:</p>
+        <pre>
+        rosrun rosserial_python serial_node.py /dev/ttyUSB0
+        </pre>
+    </section>
+    
+    <section id="custom-messages">
+        <h2>Custom ROS Messages & Services</h2>
+        <p>Creating a custom message:</p>
+        <pre>
+        echo "float32 x" > my_package/msg/Custom.msg
+        </pre>
     </section>
     
     <footer>
